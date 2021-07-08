@@ -7,6 +7,7 @@ import * as sortmethods from '../sortingalgos/sortingfncs';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import {Link} from 'react-router-dom';
+import {Helmet} from "react-helmet";
 
 class Counter extends Component {
 
@@ -524,6 +525,11 @@ this.setState({
         return(  
         
         <React.Fragment >
+<Helmet>
+                <style>{'body { background: linear-gradient(to right, #cc95c0, #dbd4b4, #7aa1d2); }'}</style>
+            </Helmet>
+
+
     <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">

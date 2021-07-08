@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './implementalgs_style.css'
+//import './implementalgs_style.css'
 import './editorstyle.css';
 import AceEditor from 'react-ace';
 import "ace-builds/src-noconflict/ext-language_tools"
@@ -11,9 +11,16 @@ import "ace-builds/src-noconflict/mode-python";
 import "ace-builds/src-noconflict/mode-c_cpp";
 import axios from 'axios';
 import 'brace/theme/monokai';
-
+import {Helmet} from "react-helmet";
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
+
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Button from 'react-bootstrap/Button';
+import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import {Link} from 'react-router-dom';
+
 
 // Import a Theme (okadia, github, xcode etc)
 
@@ -24,6 +31,8 @@ class Implementalgos extends Component {
         language:"javascript",
         apiname:"nodejs",
         snippet:"console.log('hello worldddd!')",
+        codeoutput:"Code Output",
+        runstate:false,
 
         options :[
 
@@ -43,6 +52,7 @@ class Implementalgos extends Component {
     constructor(props) {
         super(props);
         this.refName = React.createRef();
+        this.stdinref=React.createRef();
       }
 
 componentDidMount(){
@@ -62,13 +72,17 @@ componentDidMount(){
 }
 
 initeditor=()=>{
-    const selectedText = this.refName.current.editor.getValue()
+    const selectedText = this.refName.current.editor.getValue();
+    const stdininp=this.stdinref.current.editor.getValue();
     console.log(selectedText);
 
-
+this.setState({
+    runstate:true,
+    snippet:selectedText
+})
 
 const lang=this.state.apiname;
-const editordata={selectedText,lang};
+const editordata={selectedText,lang,stdininp};
 
 
 
@@ -81,6 +95,13 @@ var cputime=response.data.cpuTime;
 console.log(finaloutput);
 console.log(cputime);
 
+var resultandTime=finaloutput.concat("\n","CPU Time:",cputime)
+
+
+this.setState({
+    codeoutput:resultandTime,
+    runstate:false
+})
 
 console.log(response.data);})
 
@@ -116,9 +137,13 @@ console.log(response.data);})
 onSelectlang=(option)=>{
    console.log("l",option);
    var aname="java";
-   var snip= `class HelloWorld {
-    public static void main(String[] args) {
-        System.out.println("Hello, World!"); 
+   var snip= `public class MyClass {
+    public static void main(String args[]) {
+      int x=10;
+      int y=25;
+      int z=x+y;
+
+      System.out.println("Sum of x+y = " + z);
     }
 }`
 
@@ -132,9 +157,9 @@ onSelectlang=(option)=>{
    if(option.value==="c_cpp")
    {aname="cpp17";
     snip=`#include <iostream>
-
+using namespace std;
     int main() {
-        std::cout << "Hello World!";
+        cout << "Hello World!";
         return 0;
     }`;
 }
@@ -142,7 +167,9 @@ onSelectlang=(option)=>{
    if(option.value==="python")
    {aname="python3";
    snip=`def my_function():
-   print("Hello World")`;
+   print("Hello World")
+
+my_function()`;
 
 }
    
@@ -162,41 +189,111 @@ onSelectlang=(option)=>{
     render() { 
         var language=this.state.language;
         var apiname=this.state.apiname;
+        var codeoutput=this.state.codeoutput;
+
+        
         return ( 
+
+
+            
             <React.Fragment>
-{language}
-{apiname}
-<div class="lang_select">
+
+<Helmet>
+                <style>{'body { background: linear-gradient(to right, #757f9a, #d7dde8); }'}</style>
+            </Helmet>
+
+<nav className="mynav">
+    <h1>Write and Run Code!</h1>
+    <div className="links">
+    <Link to="#"><Button variant="outline-success">HOME</Button></Link>
+        
+    </div>
+
+
+</nav>
+
+
+
+
+            {/* <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+  <Navbar.Brand href="#home">Write and Run your code!</Navbar.Brand>
+  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+  <Navbar.Collapse id="responsive-navbar-nav">
+    <Nav className="mr-auto">
+      <Nav.Link href="#features">Features</Nav.Link>
+      <Nav.Link href="#pricing">Pricing</Nav.Link>
+      
+    </Nav>
+    
+  </Navbar.Collapse>
+</Navbar> */}
+
+
+
+<div className="lang_select">
+    <label style={{font:"20px"}}><h3>Select Language</h3></label>
 <Dropdown options={this.state.options} onChange={this.onSelectlang} value="Javascript" placeholder="Select an option" />
+<div id="stylelabel">
+    <h3>STDIN</h3>
+</div>
 </div>
 
-<div id="editor">
-<AceEditor 
-ref={this.refName}
-mode={language}
-theme="monokai" 
-className="editor"
-width='100%'
-enableSnippets={true}
-focus={true}
-enableLiveAutocompletion={true}
-value={this.state.snippet}
-enableBasicAutocompletion={true}
-
-setOptions={{
+<div className="myeditor">
+    <div id="editor">
+    <AceEditor
+    ref={this.refName}
+    mode={language}
+    theme="monokai"
+   // className="editor"
+    width='100%'
+    height="400px"
+    enableSnippets={true}
+    focus={true}
+    enableLiveAutocompletion={true}
+    value={this.state.snippet}
+    enableBasicAutocompletion={true}
     
-    focus:true,
-    fontSize:15
-  }}
+    setOptions={{
+    
+        focus:true,
+        fontSize:15
+      }}
+    
+    />
+    
+    </div>
 
+
+<AceEditor
+ theme="monokai"
+ ref={this.stdinref}
+ className="stdin"
+width="300px"
+height="400px"
 />
 
-    
+
+
 </div>
 
-<button onClick={this.initeditor}>click</button>
 
 
+
+{!this.state.runstate&&<Button size="lg" onClick={this.initeditor} id="run" >Run</Button>}
+{this.state.runstate&&<Button size="lg" disabled id="run" >Running</Button>}
+
+{/* <Button size="lg" onClick={this.initeditor} id="run" >Run</Button> */}
+
+<div id="inp">
+<AceEditor
+    value={codeoutput}
+    theme="monokai" 
+    className="inp"
+    height="200px"
+
+/>
+    
+</div>
 
 
 
