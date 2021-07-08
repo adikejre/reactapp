@@ -35,14 +35,15 @@ app.get('/runcode',(req,res)=>{
 
 app.post('/runcode',(req,res)=>{
     var myinfo={
-        "mscript":req.body.selectedText
+        "mscript":req.body.selectedText,
+        "mylang":req.body.lang
     }
     //res.send('helooo');
     console.log(myinfo.mscript,"script got");
 
     const jsondata={
         "script" : myinfo.mscript,
-        "language": "nodejs",
+        "language": myinfo.mylang,
         "versionIndex": "1",
         "clientId": "9c2f22709b6836da6a6dc0adb4684c9b",
         "clientSecret":"850acdb2fed73d6920cc3de9f2c99e25967c813e230f8d0870fc49b5270da9cc"
