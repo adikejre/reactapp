@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import './implementalgs_style.css'
 import './editorstyle.css';
 import AceEditor from 'react-ace';
 import "ace-builds/src-noconflict/ext-language_tools"
@@ -202,6 +201,20 @@ my_function()`;
                 <style>{'body { background: linear-gradient(to right, #757f9a, #d7dde8); }'}</style>
             </Helmet>
 
+            {/* <h1>Write and Run Code!</h1>
+            
+    <div className="links2">
+    <Link to="#"><Button variant="outline-success">HOME</Button></Link>
+        
+    </div> */}
+
+
+{/* <div className="links2">
+    
+    <Link to="#"><Button variant="outline-success">HOME</Button></Link>
+
+    </div> */}
+
 <nav className="mynav">
     <h1>Write and Run Code!</h1>
     <div className="links">
@@ -230,9 +243,9 @@ my_function()`;
 
 
 
-<div className="lang_select">
-    <label style={{font:"20px"}}><h3>Select Language</h3></label>
-<Dropdown options={this.state.options} onChange={this.onSelectlang} value="Javascript" placeholder="Select an option" />
+<div className="lang_select" >
+    <label style={{font:"20px",backgroundColor:"#757f9b",height:"40px"}}><h3>Select Language</h3></label>
+<Dropdown style={{backgroundColor:"#75323"}} options={this.state.options} onChange={this.onSelectlang} value="Javascript" placeholder="Select an option" />
 <div id="stylelabel">
     <h3>STDIN</h3>
 </div>

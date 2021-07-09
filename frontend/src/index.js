@@ -5,6 +5,8 @@ import Counter from './components/counter';
 import Sortinginfo from './components/sortinginfo';
 import Sortexecute from './components/sortexecute';
 import Implementalgos from './components/implementalgos';
+import Heapsortcode from './components/heapsortcode';
+import Quicksortcode from './components/quicksortcode';
 import 'bootstrap/dist/css/bootstrap.css';
 
 
@@ -27,6 +29,13 @@ ReactDOM.render(
 <Implementalgos/>
 </Route>
 
+<Route exact path="/heapsortcode">
+<Heapsortcode/>
+</Route>
+
+<Route exact path="/quicksortcode">
+<Quicksortcode/>
+</Route>
 
 </Switch> </React.Fragment></Router>
  , document.getElementById('root'));
