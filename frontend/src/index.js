@@ -7,6 +7,8 @@ import Sortexecute from './components/sortexecute';
 import Implementalgos from './components/implementalgos';
 import Heapsortcode from './components/heapsortcode';
 import Quicksortcode from './components/quicksortcode';
+
+import Cliques from './components/clique2';
 import 'bootstrap/dist/css/bootstrap.css';
 
 
@@ -36,6 +38,11 @@ ReactDOM.render(
 <Route exact path="/quicksortcode">
 <Quicksortcode/>
 </Route>
+
+<Route exact path="/cliques">
+    <Cliques/>
+</Route>
+
 
 </Switch> </React.Fragment></Router>
  , document.getElementById('root'));

@@ -1,0 +1,42 @@
+.node1{
+height: 60px;
+  width: 60px;
+  /* background-color: #bbb; */
+  border-radius: 50%;
+  cursor: pointer;
+/* background-color: black; */
+margin: 50px;;
+
+}
+
+.node2{
+    height: 60px;
+    width: 60px;
+  cursor: pointer;
+    
+    /* background-color: #bbb; */
+    border-radius: 50%;
+margin: 3px;
+background-color: lightcoral;
+
+}
+
+
+.node3{
+    height: 60px;
+    width: 60px;
+  cursor: pointer;
+    
+    /* background-color: #bbb; */
+    border-radius: 50%;
+margin: 20px;
+background-color: lightcoral;
+
+}
+
+.personimg{
+    max-width: 100%; /* or any custom size */
+   max-height: 100%; 
+    /* object-fit: cover; */
+    vertical-align: middle;
+}
