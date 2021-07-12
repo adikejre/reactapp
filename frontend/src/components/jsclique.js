@@ -115,7 +115,7 @@ export function checksol(){
 
   }
   if(cnt<maxcliqueans)
-  swal("There exists a larger group!", `Max Clique size is > ${cnt} `);
+  swal("There exists a larger group! Please select more Nodes", `Max Clique size is > ${cnt} `);
 
   else if(cnt>maxcliqueans)
     swal(`The clique is smaller than ${cnt}`, `Try again! `);

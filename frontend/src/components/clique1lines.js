@@ -30,11 +30,11 @@ function printfriends(m)
   store2=[];
     for (var i = 1; i < m; i++)
     {
-      console.log( store[i] + " ");
+      //console.log( store[i] + " ");
       store2.push(store[i]);
     }
 
-    console.log(",");
+   // console.log(",");
 }
 
 
@@ -150,7 +150,7 @@ export function gengraph(num){
     }
     
     for(i=0;i<n;i++){
-        console.log(graph[i][0]+" "+graph[i][1]);
+        
         dispgraph.push([graph[i][0],graph[i][1]]);
         //console.log();
       }
@@ -184,7 +184,7 @@ for(i=0;i<=num;i++){
 }
 
 maxcliqueans=maxCliques(0, 1);
-console.log("max"+maxcliqueans);
+
 
 findCliques(0, 1, maxcliqueans);
     
@@ -197,13 +197,15 @@ findCliques(0, 1, maxcliqueans);
 export function viewsoln(){
     
     for (var i = 0; i < finalsoln-1; i++){
-      console.log("soln "+store2[i]);
+      
     //   $(`.node${store2[i]}`).css('background-color', 'green');
     // $(`.node${store2[i]}`).css('background-image', `url("greenimg.png")`);
     $(`.node${store2[i]}`).css('background-image', `linear-gradient(green, yellow)`);
 
 
     }
+    swal( `Max group size is ${finalsoln-1}! `);
+
   }
 
 
@@ -229,7 +231,7 @@ export function viewsoln(){
   
     }
     if(cnt<maxcliqueans)
-    swal("There exists a larger group!", `Max Clique size is > ${cnt} `);
+    swal("There exists a larger group! Please select more Nodes", `Max Clique size is > ${cnt} `);
   
     else if(cnt>maxcliqueans)
       swal(`The clique is smaller than ${cnt}`, `Try again! `);
@@ -247,7 +249,7 @@ export function viewsoln(){
         if(a==cnt)
         swal("Congratulations!", `Max group size is ${cnt} `);
         else {
-          console.log(a+"a "+cnt+" count")
+          
           swal("Please try again", `You are very close! `);
         }
   
