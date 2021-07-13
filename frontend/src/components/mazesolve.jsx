@@ -119,6 +119,62 @@ const cells=document.getElementsByClassName("cell");
 }
 
 
+dfsmazeanimate=()=>{
+    const start=this.state.src;
+    const end=this.state.dst;
+    const cols=this.state.colnum;
+    const obstruct=this.state.blocks;
+    const animate=pathans.dfspath(start,end,cols,obstruct);
+    //console.log(animate);
+    const alen=animate.length;
+const cells=document.getElementsByClassName("cell");
+for(let i=0;i<alen;i++)
+    {
+        if(animate[i].length==1)
+        {
+            const[node]=animate[i];
+            setTimeout(()=>{
+                cells[node].style.backgroundColor="orange";
+
+            },i*10);
+
+        }
+        else if(animate[i].length==2)
+        {
+            const[node,node2]=animate[i];
+            setTimeout(()=>{
+                cells[node].style.backgroundColor="yellow";
+
+            },i*10);
+
+        }
+      else if(animate[i].length==3)
+        {
+            const[node,node2]=animate[i];
+            setTimeout(()=>{
+                cells[node].style.backgroundColor="white";
+
+            },i*10);
+
+        }
+        else{
+            const[node,node2]=animate[i];
+
+                setTimeout(()=>{
+                    cells[node].style.backgroundColor="green";
+    
+                },i*10);
+            
+        }
+
+    }
+
+
+
+}
+
+
+
 
     render() { 
 
@@ -133,6 +189,7 @@ mygrid.push(x);
             <React.Fragment>
                 <Button onClick={this.genmaze}>Generate maze</Button>
                 <Button onClick={this.mazeanimate}>Solve maze</Button>
+                <Button onClick={this.dfsmazeanimate}>Dfs maze</Button>
 
 
 

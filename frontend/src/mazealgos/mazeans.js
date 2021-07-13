@@ -1,3 +1,5 @@
+import swal from 'sweetalert';
+
 let num=0;
 let n=0;
 var found=false;
@@ -22,7 +24,20 @@ class Queue extends Array {
     }
 }
 
+class Stack extends Array {
+    peek() {
+        return this[this.length -1];
+    }
+
+    isEmpty() {
+        return this.length === 0;
+    }
+}
+
+
+
 let q = new Queue();
+let stck=new Stack();
 let path=[];
 let visited=[]; 
 
@@ -32,8 +47,6 @@ function getneighbours(ele)
  var i,vert,no;
 
  let direction=[1,n,-n,-1];
-
-
  for(i=0;i<4;i++)
  {
      vert=ele+direction[i];
@@ -52,13 +65,48 @@ function getneighbours(ele)
 
      }
  }
- 
 }
+
+
+function dfsgetneighbours(ele)
+{
+ var i,vert,no;
+
+ let direction=[1,n,-n,-1];
+ for(i=0;i<4;i++)
+ {
+     vert=ele+direction[i];
+
+     if(vert>=0&&vert<num&&visited[vert]!=1&&!blockcells.has(vert))
+     {
+         if((ele%n==0&&vert==ele-1)||(vert%n==0&&ele==vert-1))
+             continue;
+         else{
+
+         stck.push(vert);
+         visited[vert]=1;
+         path[vert]=ele;
+         animations.push([vert]);
+         }
+
+     }
+ }
+}
+
+
+
 
 
 export function bfspath(src,dst,ncols,blocks){
 num=ncols**2;
 n=ncols;
+path=[];
+visited=[];
+while(!q.isEmpty())
+{
+    q.dequeue();
+}
+
 for(var x=0;x<num;x++)
 {
     path.push([-1]);
@@ -95,13 +143,7 @@ for(var y=0;y<blocks.length;y++)
      getneighbours(ele);
 
     }
-    // if(found==true)
-    //     return true ;
-    // else
-    //     {
-
-    //     return false;
-    //     }
+   
 
     if(found)
     {
@@ -115,8 +157,82 @@ for(var y=0;y<blocks.length;y++)
     
    
 }
+else{
+swal("No Path exists!","Try another maze");
+
+}
 
 
     return animations
+
+}
+
+
+export function dfspath(src,dst,ncols,blocks)
+{
+num=ncols**2;
+n=ncols;
+path=[];
+visited=[];
+while(!stck.isEmpty())
+{
+    stck.pop();
+}
+
+for(var x=0;x<num;x++)
+{
+    path.push([-1]);
+    visited.push([0]);
+}
+found=false;
+animations=[];
+
+blockcells=new Map();
+for(var y=0;y<blocks.length;y++)
+{
+    blockcells.set(blocks[y],blocks[y]);
+}
+
+var ele=src;
+
+stck.push(src);
+visited[src]=1;
+while(!stck.isEmpty())
+{
+        ele=stck.peek();
+        animations.push([ele,ele]);
+        stck.pop();
+        animations.push([ele,ele,ele]);
+
+
+        if(ele==dst)
+        {
+            found=true;
+            break;
+        }
+
+     dfsgetneighbours(ele);
+
+}
+
+if(found)
+{
+var jj=dst;
+while(jj!=-1)
+{
+
+    animations.push([jj,jj,jj,jj]);
+    jj=path[jj];
+}
+
+
+}
+
+
+return animations
+
+
+
+
 
 }
