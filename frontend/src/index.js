@@ -7,7 +7,7 @@ import Sortexecute from './components/sortexecute';
 import Implementalgos from './components/implementalgos';
 import Heapsortcode from './components/heapsortcode';
 import Quicksortcode from './components/quicksortcode';
-
+import Mazesolver from './components/mazesolve';
 import Cliques from './components/cliques';
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -43,6 +43,9 @@ ReactDOM.render(
     <Cliques/>
 </Route>
 
+<Route exact path="/mazesolver">
+    <Mazesolver/>
+</Route>
 
 </Switch> </React.Fragment></Router>
  , document.getElementById('root'));

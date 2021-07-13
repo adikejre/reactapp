@@ -534,7 +534,7 @@ this.setState({
   <div class="container-fluid">
     <div class="navbar-header">
     Sorting Algorithms
-      <h3 class="navbar-brand" >Sorting Algorithms</h3>
+      <h3 class="navbar-brand" ><h1>Sorting Algorithms</h1></h3>
     </div>
     <button  class="btn btn-danger navbar-btn" onClick={this.randarray} style={{ margin: "2px" }}> Reset </button>
     <button  class="btn btn-danger navbar-btn" onClick={this.animateinsertion} style={{ margin: "2px" }}> Insertion sort </button>

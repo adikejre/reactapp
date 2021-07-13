@@ -108,25 +108,25 @@ for(var x=1;x<=numnodes;x++)
   </Navbar> */}
 
 
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
+<nav className="navbar navbar-inverse">
+  <div className="container-fluid">
+    <div className="navbar-header">
     Find maximal clique
-      <h1 class="navbar-brand" ><h1>Find maximal clique</h1> Find largest group of mutual friends </h1>
+      <h1 className="navbar-brand" ><h1>Find maximal clique</h1> Find largest group of mutual friends </h1>
     </div>
-    <button  class="btn btn-danger navbar-btn" onClick={()=>{this.setState({numnodes:this.state.numnodes+1})}}>Add nodes </button>
-    <button  class="btn btn-danger navbar-btn" onClick={()=>{ this.state.numnodes>0 ?
+    <button  className="btn btn-danger navbar-btn" onClick={()=>{this.setState({numnodes:this.state.numnodes+1})}}>Add nodes </button>
+    <button  className="btn btn-danger navbar-btn" onClick={()=>{ this.state.numnodes>0 ?
     this.setState({numnodes:this.state.numnodes-1}):
     this.setState({numnodes:0})}}>Remove nodes </button>
 
-    <button  class="btn btn-danger navbar-btn" onClick={this.makeline2}>Get Random Graph </button>
-    <button  class="btn btn-danger navbar-btn" onClick={linefn.viewsoln}>Get Solution </button>
-    <button  class="btn btn-danger navbar-btn" onClick={linefn.checksol}>Check Solution</button>
+    <button  className="btn btn-danger navbar-btn" onClick={this.makeline2}>Get Random Graph </button>
+    <button  className="btn btn-danger navbar-btn" onClick={linefn.viewsoln}>Get Solution </button>
+    <button  className="btn btn-danger navbar-btn" onClick={linefn.checksol}>Check Solution</button>
 
 
 
-    <ul class="nav navbar">
-      <li class="links"><a href="#" class="links">Home</a></li>
+    <ul className="nav navbar">
+      <li className="links"><a href="#" className="links">Home</a></li>
 
     </ul>
    
