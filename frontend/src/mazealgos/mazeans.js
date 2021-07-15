@@ -5,6 +5,7 @@ let n=0;
 var found=false;
 var blockcells=new Map();
 let animations=[];
+let removeanims=[];
 
 class Queue extends Array {
     enqueue(val) {
@@ -68,6 +69,8 @@ function getneighbours(ele)
 }
 
 
+
+
 function dfsgetneighbours(ele)
 {
  var i,vert,no;
@@ -87,6 +90,8 @@ function dfsgetneighbours(ele)
          visited[vert]=1;
          path[vert]=ele;
          animations.push([vert]);
+        //removeanims.push([vert]);
+
          }
 
      }
@@ -132,7 +137,7 @@ for(var y=0;y<blocks.length;y++)
         ele=q.peek();
         animations.push([ele,ele]);
         q.dequeue();
-        animations.push([ele,ele,ele]);
+        animations.push([ele,ele]);
 
 
         if(ele==dst)
@@ -151,7 +156,7 @@ for(var y=0;y<blocks.length;y++)
     while(jj!=-1)
     {
 
-        animations.push([jj,jj,jj,jj]);
+        animations.push([jj,jj,jj]);
         jj=path[jj];
     }
     
@@ -159,6 +164,7 @@ for(var y=0;y<blocks.length;y++)
 }
 else{
 swal("No Path exists!","Try another maze");
+return 0;
 
 }
 
@@ -186,6 +192,7 @@ for(var x=0;x<num;x++)
 }
 found=false;
 animations=[];
+removeanims=[];
 
 blockcells=new Map();
 for(var y=0;y<blocks.length;y++)
@@ -202,7 +209,7 @@ while(!stck.isEmpty())
         ele=stck.peek();
         animations.push([ele,ele]);
         stck.pop();
-        animations.push([ele,ele,ele]);
+        animations.push([ele,ele]);
 
 
         if(ele==dst)
@@ -218,15 +225,21 @@ while(!stck.isEmpty())
 if(found)
 {
 var jj=dst;
+//animations.push([removeanims,removeanims,removeanims,removeanims,removeanims]);
 while(jj!=-1)
 {
 
-    animations.push([jj,jj,jj,jj]);
+    animations.push([jj,jj,jj]);
     jj=path[jj];
 }
 
 
 }
+else{
+    swal("No Path exists!","Try another maze");
+    return 0;
+    
+    }
 
 
 return animations

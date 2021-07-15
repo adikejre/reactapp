@@ -546,9 +546,6 @@ this.setState({
 
     <ul class="nav navbar">
       <li class="links"><a href="#" class="links">Home</a></li>
-
-
-
       <li class="links"><Link to="/sortinfo" class="links">Learn about Sorting Algorithms</Link></li>
       <li class="links"><Link to="/implementalgos" class="links">Implement Sorting Algorithms</Link></li>
     </ul>

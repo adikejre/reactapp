@@ -216,7 +216,7 @@ my_function()`;
     </div> */}
 
 <nav className="mynav">
-    <h1>Write and Run Code!</h1>
+    <h1 style={{marginLeft:"15px"}}>Write and Run Code!</h1>
     <div className="links">
     <Link to="#"><Button variant="outline-success">HOME</Button></Link>
         
