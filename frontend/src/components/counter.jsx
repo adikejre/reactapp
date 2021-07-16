@@ -19,13 +19,25 @@ class Counter extends Component {
 state={
     arrvals:[],
     arrnum:50,
-    animspeed:10
+    animspeed:10,
+    Wwidth: window.innerWidth, 
+    Wheight: window.innerHeight
 
 };
 
 componentDidMount(){
+    this.updateWindowDimensions();
+  window.addEventListener('resize', this.updateWindowDimensions);
     this.randarray();
 }
+componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+updateWindowDimensions=() =>{
+    this.setState({ Wwidth: window.innerWidth, Wheight: window.innerHeight });
+  }
+
 
 randarray=()=> {
     let arr=[];
@@ -521,6 +533,8 @@ this.setState({
         const arrvals=this.state.arrvals;
         const arrnum=this.state.arrnum;
         const animspeed=this.state.animspeed;
+        const Wheight=this.state.Wheight;
+        const Wwidth=this.state.Wwidth;
 
         return(  
         
@@ -553,7 +567,7 @@ this.setState({
     
   </div>
 </nav>
-       <div className="allbtns">
+       <div className="allbtns" style={{gridGap:Wwidth/8}}>
        
         <div className='slider'>
         <h5>Size of Array</h5>
@@ -585,7 +599,7 @@ this.setState({
         </div>
         <div className="allbars">
         {arrvals.map((val,i)=>
-        <div className="mybars" style={ {height:val,width:1000/arrnum}} key={i}> </div>
+        <div className="mybars" style={ {height:val,width:Wwidth*0.6/arrnum}} key={i}> </div>
         )
 
         }

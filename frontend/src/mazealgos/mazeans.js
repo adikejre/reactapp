@@ -90,7 +90,8 @@ function dfsgetneighbours(ele)
          visited[vert]=1;
          path[vert]=ele;
          animations.push([vert]);
-        //removeanims.push([vert]);
+         //console.log(vert);
+        removeanims.push(vert);
 
          }
 
@@ -225,7 +226,13 @@ while(!stck.isEmpty())
 if(found)
 {
 var jj=dst;
-//animations.push([removeanims,removeanims,removeanims,removeanims,removeanims]);
+//animations.push(removeanims);
+//console.log(removeanims);
+for(let itr in removeanims)
+{
+    //console.log(itr);
+    animations.push([removeanims[itr],removeanims[itr],removeanims[itr],removeanims[itr]]);
+}
 while(jj!=-1)
 {
 

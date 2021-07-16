@@ -11,13 +11,30 @@ class Mazesolver extends Component {
         src:0,
         dst:0,
         blocks:[],
-        speedOfAnim:10
+        speedOfAnim:10,
+        Wwidth: window.innerWidth, 
+    Wheight: window.innerHeight
     }
+
+
+
+    componentDidMount(){
+        this.updateWindowDimensions();
+      window.addEventListener('resize', this.updateWindowDimensions);
+    
+    }
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.updateWindowDimensions);
+      }
+    
+    updateWindowDimensions=() =>{
+        this.setState({ Wwidth: window.innerWidth, Wheight: window.innerHeight });
+      }
 
 
 genmaze=()=>{
 const cells=document.getElementsByClassName("cell");
-console.log(cells[0].style.backgroundColor);
+// console.log(cells[0].style.backgroundColor);
 
 const n=this.state.colnum**2;
 let blockcells=[];
@@ -79,6 +96,16 @@ mazeanimate=()=>{
     const alen=animate.length;
 const cells=document.getElementsByClassName("cell");
 let ccolor=true;
+let reslen=0;
+for(let g=0;g<alen;g++)
+{
+    if(animate[g].length==3){
+        reslen++;
+    }
+}
+let greencolor=0;
+let gc2=greencolor+100;
+
 
     for(let i=0;i<alen;i++)
     {
@@ -129,8 +156,16 @@ let ccolor=true;
             const[node,node2]=animate[i];
 
                 setTimeout(()=>{
-                    cells[node].style.backgroundColor="green";
-    
+                    cells[node].style.backgroundColor=`rgb(${greencolor},${gc2},0)`;
+                    if(reslen>120)
+                    {
+                    greencolor+=1;
+                    gc2+=1;
+                    }
+                    else{
+                    greencolor+=120/reslen;
+                    gc2+=120/reslen;
+                    }
                 },i*speedanim);
             
         }
@@ -146,10 +181,22 @@ dfsmazeanimate=()=>{
     const cols=this.state.colnum;
     const obstruct=this.state.blocks;
     const animate=pathans.dfspath(start,end,cols,obstruct);
-    console.log(animate);
+ //   console.log(animate);
     const alen=animate.length;
 const cells=document.getElementsByClassName("cell");
 let ccolor=true;
+let greencolor=0;
+let gc2=greencolor+100;
+
+
+let reslen=0;
+for(let g=0;g<alen;g++)
+{
+    if(animate[g].length==3){
+        reslen++;
+    }
+}
+
 
 for(let i=0;i<alen;i++)
     {
@@ -196,23 +243,34 @@ for(let i=0;i<alen;i++)
 
     //     }
         else if(animate[i].length==3){
+            //let greencolor=0;
             const[node,node2]=animate[i];
-
+            
                 setTimeout(()=>{
-                    cells[node].style.backgroundColor="green";
-    
+                   
+                    let myc1=Math.floor(greencolor);
+                    let myc2=Math.floor(gc2);
+                    cells[node].style.backgroundColor=`rgb(${myc1},${myc2},0)`;
+                    greencolor+=120/reslen;
+                    gc2+=120/reslen;
+                   
                 },i*speedanim);
+
             
         }
-        // else{
-        //     const [node]=animate[i];
-        //     for( let itm in node)
-        //     {
-        //         console.log(itm);
-        //         cells[itm].style.backgroundColor="white";
+        else{
+            const [node]=animate[i];
+           // console.log(node);
+           
 
-        //     }
-        // }
+                setTimeout(()=>{
+                cells[node].style.backgroundColor="white";
+
+                },i*speedanim);
+
+
+            
+        }
 
     }
 
@@ -237,10 +295,14 @@ handleSpeed=(value)=>{
 
 
     render() { 
+        const Wheight=this.state.Wheight;
+        const Wwidth=this.state.Wwidth;
+
+
 const speedOfAnim=this.state.speedOfAnim;
 const colnum=this.state.colnum;
 const cellnum=colnum**2;
-const griddim=window.innerWidth*0.75;
+const griddim=this.state.Wwidth*0.8;
 const mygrid=[];
 for(var x=1;x<=cellnum;x++)
 mygrid.push(x);
@@ -275,7 +337,7 @@ mygrid.push(x);
                 <Button onClick={this.dfsmazeanimate}>Dfs maze</Button> */}
 
 
-<div className="allbtns">
+<div className="allbtns" style={{gridGap:Wwidth/8}}>
     <div className='sliderdims' style={{ marginLeft:"20px"}}>
             <h4>Maze Size</h4>
                <Slider
