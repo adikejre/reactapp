@@ -45,7 +45,7 @@ let visited=[];
 
 function getneighbours(ele)
 {
- var i,vert,no;
+ var i,vert;
 
  let direction=[1,n,-n,-1];
  for(i=0;i<4;i++)
@@ -73,7 +73,7 @@ function getneighbours(ele)
 
 function dfsgetneighbours(ele)
 {
- var i,vert,no;
+ var i,vert;
 
  let direction=[1,n,-n,-1];
  for(i=0;i<4;i++)

@@ -9,6 +9,7 @@ import Heapsortcode from './components/heapsortcode';
 import Quicksortcode from './components/quicksortcode';
 import Mazesolver from './components/mazesolve';
 import Cliques from './components/cliques';
+import Homepg from './components/homepg';
 import 'bootstrap/dist/css/bootstrap.css';
 
 
@@ -45,6 +46,14 @@ ReactDOM.render(
 
 <Route exact path="/mazesolver">
     <Mazesolver/>
+</Route>
+
+<Route exact path="/">
+    <Homepg/>
+</Route>
+
+<Route exact path="/home">
+    <Homepg/>
 </Route>
 
 </Switch> </React.Fragment></Router>
