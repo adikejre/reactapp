@@ -126,7 +126,7 @@ for(var x=1;x<=numnodes;x++)
 
 
     <ul className="nav navbar">
-      <li className="links"><a href="#" className="links">Home</a></li>
+    <li className="links"><Link to="/home" className="links">Home</Link></li>
 
     </ul>
    

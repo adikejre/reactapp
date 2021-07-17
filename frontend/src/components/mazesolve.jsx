@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import * as pathans from '../mazealgos/mazeans';
 import Slider from 'react-rangeslider'
 import 'react-rangeslider/lib/index.css'; 
+import {Link} from 'react-router-dom';
 
 class Mazesolver extends Component {
     state = {  
@@ -311,19 +312,20 @@ mygrid.push(x);
             <React.Fragment>
 
 
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
+<nav className="navbar navbar-inverse">
+  <div className="container-fluid">
+    <div className="navbar-header">
     Path Finding
-      <h3 class="navbar-brand" ><h1>Path Finding</h1></h3>
+      <h3 className="navbar-brand" ><h1>Path Finding</h1></h3>
     </div>
-    <button  class="btn btn-success navbar-btn" onClick={this.genmaze} style={{ margin: "2px" }}> Generate Maze </button>
-    <button  class="btn btn-success navbar-btn" onClick={this.mazeanimate} style={{ margin: "2px" }}> BFS </button>
-    <button  class="btn btn-success navbar-btn" onClick={this.dfsmazeanimate} style={{ margin: "2px" }}> DFS </button>
+    <button  className="btn btn-success navbar-btn" onClick={this.genmaze} style={{ margin: "2px" }}> Generate Maze </button>
+    <button  className="btn btn-success navbar-btn" onClick={this.mazeanimate} style={{ margin: "2px" }}> BFS </button>
+    <button  className="btn btn-success navbar-btn" onClick={this.dfsmazeanimate} style={{ margin: "2px" }}> DFS </button>
    
 
-    <ul class="nav navbar">
-      <li class="links"><a href="#" class="links">Home</a></li>
+    <ul className="nav navbar">
+      
+      <li className="links"><Link to="/home" className="links">Home</Link></li>
       
     </ul>
    

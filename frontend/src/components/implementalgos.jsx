@@ -85,7 +85,7 @@ const editordata={selectedText,lang,stdininp};
 
 
 
-axios.post('http://localhost:4000/runcode',editordata).then((response) => {console.log('Data sent'); 
+axios.post('/runcode',editordata).then((response) => {console.log('Data sent'); 
 
 
 var finaloutput=response.data.output;
@@ -218,8 +218,8 @@ my_function()`;
 <nav className="mynav">
     <h1 style={{marginLeft:"15px"}}>Write and Run Code!</h1>
     <div className="links">
-    <Link to="#"><Button variant="outline-success">HOME</Button></Link>
-        
+    <Link to="/home"><Button variant="outline-success">HOME</Button></Link>
+    
     </div>
 
 
